@@ -38,7 +38,7 @@ public class SquareTests {
     Square s = new Square(5);
     // assert s.area() == 24;
     // 5. необходимость в более подробных смс об ошибках - Assert спец вспомогательный класс
-    Assert.assertEquals(s.area(), 25.0);  // появился импорт import org.testng.Assert;
+    Assert.assertEquals(s.area(), 25);  // появился импорт import org.testng.Assert;
 
   }
 
