@@ -35,7 +35,7 @@ public class ContactCreationTests {
     wd.findElement(By.name("nickname")).clear();
     wd.findElement(By.name("nickname")).sendKeys("IPI");
     wd.findElement(By.name("photo")).clear();
-  //  wd.findElement(By.name("photo")).sendKeys("C:\\fakepath\\Koala.jpg");
+    wd.findElement(By.name("photo")).sendKeys("C:\\tools\\Koala.jpg");
     wd.findElement(By.name("title")).clear();
     wd.findElement(By.name("title")).sendKeys("Hello");
     wd.findElement(By.name("company")).clear();
