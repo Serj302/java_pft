@@ -40,7 +40,7 @@ public class ContactHelper {
     wd.findElement(By.name("nickname")).clear();
     wd.findElement(By.name("nickname")).sendKeys(contactData.getNickname());
 
-    wd.findElement(By.name("photo")).click();
+   // wd.findElement(By.name("photo")).click();
     wd.findElement(By.name("photo")).clear();
     wd.findElement(By.name("photo")).sendKeys(contactData.getPhoto());
 

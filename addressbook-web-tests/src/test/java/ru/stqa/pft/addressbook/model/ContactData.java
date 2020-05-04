@@ -118,6 +118,7 @@ public class ContactData {
   public String getNew_group() {
     return new_group;
   }
+
   public String getAddress2() {
     return address2;
   }
