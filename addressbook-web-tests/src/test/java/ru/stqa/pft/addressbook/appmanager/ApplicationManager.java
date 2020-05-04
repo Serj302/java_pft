@@ -55,10 +55,6 @@ public class ApplicationManager {
     }
   }
 
-  public void deleteSelectedGroups() {
-    wd.findElement(By.name("delete")).click();
-  }
-
   public GroupHelper getGroupHelper() {
     return groupHelper;
   }
@@ -71,11 +67,12 @@ public class ApplicationManager {
     navigationHelper.gotoGroupPage();
   }
 
+  public void gotoContactPage() {
+    navigationHelper.gotoContactPage();
+  }
+
   public ContactHelper getContactHelper() {
     return contactHelper;
   }
 
-  public void gotoContactPage() {
-    navigationHelper.gotoContactPage();
-  }
 }
