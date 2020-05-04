@@ -13,7 +13,7 @@ public class ContactCreationTests extends TestBase {
             "C:\\tools\\Koala.jpg", "Hello", "Home", "Moscow, st. Lenina 27, kv. 5",
             "+7495256231", "+79604512309", "+7495255231 (dob 999)", "+78121234567",
             "IPI@gmail.com", "software-testing.ru", "9", "September", "1999",
-            "Moscow, st. Lenina 72, kv. 55", "+7495254251", "Test contact"));
+            "test4","Moscow, st. Lenina 72, kv. 55", "+7495254251", "Test contact"));
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToHomePage();
 
