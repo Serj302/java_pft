@@ -8,7 +8,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-    app.gotoContactPage();
+    app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().fillContactForm(new ContactData("Куб", "Petrovich3", "Красный", "IPI",
             "C:\\tools\\Koala.jpg", "Hello", "Home", "Moscow, st. Lenina 27, kv. 5",
             "+7495256231", "+79604512309", "+7495255231 (dob 999)", "+78121234567",

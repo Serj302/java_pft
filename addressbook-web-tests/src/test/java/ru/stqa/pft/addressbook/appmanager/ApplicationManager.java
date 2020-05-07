@@ -1,6 +1,5 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -37,14 +36,6 @@ public class ApplicationManager {
 
   public NavigationHelper getNavigationHelper() {
     return navigationHelper;
-  }
-
-  public void gotoGroupPage() {
-    navigationHelper.gotoGroupPage();
-  }
-
-  public void gotoContactPage() {
-    navigationHelper.gotoContactPage();
   }
 
   public ContactHelper getContactHelper() {
