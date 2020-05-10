@@ -19,7 +19,7 @@ public class BaseHelper {
   protected void type(By locator, String text) {
     click(locator);
     if (text != null){ // если передаем null - то ничего не делать, в противном выполнить код:
-      String existingText = wd.findElement(locator).getAttribute("value"); // получили значение с поле ввода
+      String existingText = wd.findElement(locator).getAttribute("value"); // получили значение с поля ввода
       // этот if необходим для оптимизации больших полей ввода, куда вводится длинный текст, от 1000-2000 и более символов
       if (! text.equals(existingText)){ // если не верно, что передаваемый текст совпадает уже с существующ текстом в форме, то выполнить код:
         wd.findElement(locator).clear();
@@ -38,10 +38,12 @@ public class BaseHelper {
   }
 
   protected void select(By locator, String text) {
+    if (text != null)
     new Select(wd.findElement(locator)).selectByVisibleText(text);
   }
 
   protected void photo(By locator, String value) {
+    if (value != null)
     wd.findElement(locator).sendKeys(value);
   }
 }
