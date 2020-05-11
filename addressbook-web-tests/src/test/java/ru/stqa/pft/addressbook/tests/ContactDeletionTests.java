@@ -1,3 +1,5 @@
+// Задание №8
+
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
@@ -7,7 +9,7 @@ public class ContactDeletionTests extends TestBase{
 
   @Test
   public void testContactDeletion(){
-        // Проверка на наличие контакта. Если контакта нет - создать. (По аналогии как в testGroupDeletion)
+        // Проверка на наличие контакта. Если контакта нет - создать. (По аналогии testGroupDeletion)
      if (! app.getContactHelper().isThereAContac()){
       app.getNavigationHelper().gotoContactPage();
       app.getContactHelper().fillContactForm(new ContactData

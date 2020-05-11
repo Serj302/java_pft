@@ -1,3 +1,5 @@
+// Задание №8
+
 package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
