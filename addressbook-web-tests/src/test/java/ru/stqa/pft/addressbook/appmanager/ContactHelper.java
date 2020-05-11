@@ -1,10 +1,12 @@
 package ru.stqa.pft.addressbook.appmanager;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import static org.openqa.selenium.By.*;
 
 public class ContactHelper extends BaseHelper{
 
@@ -13,46 +15,46 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void submitContactCreation() {
-    click(By.xpath("(//input[@name='submit'])[2]"));
+    click(xpath("(//input[@name='submit'])[2]"));
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
 
-    type(By.name("firstname"), contactData.getFirstname());
+    type(name("firstname"), contactData.getFirstname());
 
-    type(By.name("middlename"), contactData.getMiddlename());
+    type(name("middlename"), contactData.getMiddlename());
 
-    type(By.name("lastname"), contactData.getLastname());
+    type(name("lastname"), contactData.getLastname());
 
-    type(By.name("nickname"), contactData.getNickname());
+    type(name("nickname"), contactData.getNickname());
 
-    photo(By.name("photo"), contactData.getPhoto());
+    photo(name("photo"), contactData.getPhoto());
 
-    type(By.name("title"), contactData.getTitle());
+    type(name("title"), contactData.getTitle());
 
-    type(By.name("company"), contactData.getCompany());
+    type(name("company"), contactData.getCompany());
 
-    type(By.name("address"), contactData.getAddress());
+    type(name("address"), contactData.getAddress());
 
-    type(By.name("home"), contactData.getTel_home());
+    type(name("home"), contactData.getTel_home());
 
-    type(By.name("mobile"), contactData.getTel_mobile());
+    type(name("mobile"), contactData.getTel_mobile());
 
-    type(By.name("work"), contactData.getTel_work());
+    type(name("work"), contactData.getTel_work());
 
-    type(By.name("fax"), contactData.getFax());
+    type(name("fax"), contactData.getFax());
 
-    type(By.name("email"), contactData.getEmail());
+    type(name("email"), contactData.getEmail());
 
-    type(By.name("homepage"), contactData.getHomepage());
+    type(name("homepage"), contactData.getHomepage());
 
-    select(By.name("bday"), contactData.getBday());
+    select(name("bday"), contactData.getBday());
 
-    select(By.name("bmonth"), contactData.getBmonth());
+    select(name("bmonth"), contactData.getBmonth());
 
-    type(By.name("byear"), contactData.getByear());
+    type(name("byear"), contactData.getByear());
 
-    /** выбор элемента из выпадающего списка:
+    /* выбор элемента из выпадающего списка:
      *
      1. new Select () - вспомогательный класс
 
@@ -69,7 +71,7 @@ public class ContactHelper extends BaseHelper{
 
      5. чтобы исключение предотвратить - проверка:
 
-      if (isElementPresent(By.name("new_group"))) { //если, элемент isElementPresent, с таким локатором By.name("new_group"))
+      if (isElementPresent(By.name("new_group"))) {   //если, элемент isElementPresent, с таким локатором - By.name("new_group"))
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 
      // тогда использовать выпадающий список и выбрать какой-нибудь пункт
@@ -144,26 +146,25 @@ public class ContactHelper extends BaseHelper{
      */
 
     if (creation){
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      //
+      new Select(wd.findElement(name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      Assert.assertFalse(isElementPresent(name("new_group")));
     }
 
+    type(name("address2"), contactData.getAddress2());
 
-    type(By.name("address2"), contactData.getAddress2());
+    type(name("phone2"), contactData.getPhone2());
 
-    type(By.name("phone2"), contactData.getPhone2());
-
-    type(By.name("notes"), contactData.getNotes());
+    type(name("notes"), contactData.getNotes());
   }
 
   public void selectContact() {
-    click(By.name("selected[]"));
-
+    click(name("selected[]"));
   }
 
   public void deletedContact() {
-    click(By.xpath("//input[@value='Delete']"));
+    click(xpath("//input[@value='Delete']"));
   }
 
   public void confirmationDeletedContact() {
@@ -171,11 +172,15 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void editContact() {
-    click(By.xpath("//img[@alt='Edit']"));
+    click(xpath("//img[@alt='Edit']"));
   }
 
   public void updateModification() {
-    click(By.xpath("(//input[@name='update'])[2]"));
+    click(xpath("(//input[@name='update']"));
+  }
+
+  public boolean isThereAContac() {
+    return isElementPresent(name("selected[]"));
   }
 
 }
