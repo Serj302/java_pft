@@ -18,11 +18,34 @@ public class ContactData {
   private final String bday;
   private final String bmonth;
   private final String byear;
+  private final String group;
   private final String address2;
   private final String phone2;
   private final String notes;
 
-  public ContactData(String firstname, String middlename, String lastname, String nickname, String photo, String title, String company, String address, String tel_home, String tel_mobile, String tel_work, String fax, String email, String homepage, String bday, String bmonth, String byear, String address2, String phone2, String notes) {
+  public ContactData(
+          String firstname,
+          String middlename,
+          String lastname,
+          String nickname,
+          String photo,
+          String title,
+          String company,
+          String address,
+          String tel_home,
+          String tel_mobile,
+          String tel_work,
+          String fax,
+          String email,
+          String homepage,
+          String bday,
+          String bmonth,
+          String byear,
+          String group,
+          String address2,
+          String phone2,
+          String notes) {
+
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -40,6 +63,7 @@ public class ContactData {
     this.bday = bday;
     this.bmonth = bmonth;
     this.byear = byear;
+    this.group = group;
     this.address2 = address2;
     this.phone2 = phone2;
     this.notes = notes;
@@ -113,6 +137,10 @@ public class ContactData {
     return byear;
   }
 
+  public String getGroup() {
+    return group;
+  }
+
   public String getAddress2() {
     return address2;
   }
@@ -124,4 +152,6 @@ public class ContactData {
   public String getNotes() {
     return notes;
   }
+
+
 }

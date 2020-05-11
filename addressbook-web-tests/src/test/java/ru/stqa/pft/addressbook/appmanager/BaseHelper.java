@@ -2,6 +2,7 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
@@ -29,10 +30,10 @@ public class BaseHelper {
   }
 
   private boolean isAlertPresent() {
-    try {
+    try {                               // попытаться, если получилось - true
       wd.switchTo().alert();
       return true;
-    } catch (NoAlertPresentException e) {
+    } catch (NoAlertPresentException e) {  //поймать/перехватить исключение
       return false;
     }
   }
@@ -46,4 +47,16 @@ public class BaseHelper {
     if (value != null) //выполнять условие, только если передается какое-то значение, если null - ничего делать не нужно
     wd.findElement(locator).sendKeys(value);
   }
+
+  // Метод isElementPresent - проверяет наличие/отсутсвие элемента
+
+  protected boolean isElementPresent(By locator) {
+    try {
+      wd.findElement(locator);
+      return true;
+    } catch (NoSuchElementException ex){
+      return false;
+    }
+  }
+
 }

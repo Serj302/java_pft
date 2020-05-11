@@ -9,10 +9,31 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() throws Exception {
     app.getNavigationHelper().gotoContactPage();
-    app.getContactHelper().fillContactForm(new ContactData("Куб", "Petrovich3", "Красный", "IPI",
-            "C:\\tools\\Koala.jpg", "Hello", "Home", "Moscow, st. Lenina 27, kv. 5",
-            "+7495256231", "+79604512309", "+7495255231 (dob 999)", "+78121234567",
-            "IPI@gmail.com", "software-testing.ru", "9", "September", "1999","Moscow, st. Lenina 72, kv. 55", "+7495254251", "Test contact"));
+    app.getContactHelper().fillContactForm(new ContactData
+            (
+            "Сидоров",
+            "Petrovich3",
+            "Сидоров",
+            "IPI",
+            "C:\\tools\\Koala.jpg",
+            "Hello",
+            "Home",
+            "Moscow, st. Lenina 27, kv. 5",
+            "+7495256231",
+            "+79604512309",
+            "+7495255231 (dob 999)",
+            "+78121234567",
+            "IPI@gmail.com",
+            "software-testing.ru",
+            "9",
+            "September",
+            "1999",
+            "test1",
+            "Moscow, st. Lenina 72, kv. 55",
+            "+7495254251",
+            "Test contact"
+           ),
+            true);
     app.getContactHelper().submitContactCreation();
     app.getContactHelper().returnToHomePage();
 
