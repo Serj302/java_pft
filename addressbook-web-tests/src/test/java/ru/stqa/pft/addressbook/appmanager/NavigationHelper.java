@@ -10,10 +10,17 @@ public class NavigationHelper extends BaseHelper{
   }
 
   public void gotoGroupPage() {
-    click(By.linkText("groups"));
+      click(By.linkText("groups"));
   }
+
 
   public void gotoContactPage() {
     click(By.linkText("add new"));
   }
+
+
+  public void returnToHomePage() {
+    click(By.linkText("home"));
+  }
+
 }

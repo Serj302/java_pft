@@ -13,7 +13,7 @@ public class ContactModificationTests extends TestBase{
             (
             "Tom",
             "Cruzeevich",
-            "Cruz",
+            "Cruzer",
             null,
             null,
             null,
@@ -39,7 +39,7 @@ public class ContactModificationTests extends TestBase{
             ),
             false);
     app.getContactHelper().updateModification();
-    app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHomePage();
 
   }
 }

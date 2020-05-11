@@ -11,7 +11,7 @@ public class ContactCreationTests extends TestBase {
     app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().fillContactForm(new ContactData
             (
-            "Сидоров",
+            "Сидор",
             "Petrovich3",
             "Сидоров",
             "IPI",
@@ -35,7 +35,7 @@ public class ContactCreationTests extends TestBase {
            ),
             true);
     app.getContactHelper().submitContactCreation();
-    app.getContactHelper().returnToHomePage();
+    app.getNavigationHelper().returnToHomePage();
 
   }
 }
