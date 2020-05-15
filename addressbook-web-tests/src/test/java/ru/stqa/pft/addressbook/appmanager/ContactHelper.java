@@ -177,7 +177,7 @@ public class ContactHelper extends BaseHelper{
   }
 
   public void updateModification() {
-    click(xpath("(//input[@name='update']"));
+    click(xpath("//input[@name='update']"));
   }
 
   public boolean isThereAContac() {

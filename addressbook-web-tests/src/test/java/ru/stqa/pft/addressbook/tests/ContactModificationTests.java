@@ -1,5 +1,3 @@
-// Задание №8
-
 package ru.stqa.pft.addressbook.tests;
 
 import org.testng.annotations.Test;
@@ -17,7 +15,7 @@ public class ContactModificationTests extends TestBase{
                       (
                               "Сидор",
                               "Petrovich3",
-                              "Sidor",
+                              "Сидоров",
                               "IPI",
                               "C:\\tools\\Koala.jpg",
                               "Hello",
