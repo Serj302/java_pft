@@ -9,16 +9,17 @@ public class GroupModificationTests extends TestBase{
   @Test
   public void testGroupModification() {
     app.getNavigationHelper().gotoGroupPage();
-// контроль кол-ва элементов
-// обращать внимание с какой страницы начинается подсчет
-    int before = app.getGroupHelper().getGroupCount();  // кол-во групп ДО добавления
 //Проверка на наличие группы. Если группы нет - создает.
     if (! app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup (new GroupData("test0", null, null));
+      //int before = app.getGroupHelper().getGroupCount();
     }
+// контроль кол-ва элементов
+// обращать внимание с какой страницы начинается подсчет
+    int before = app.getGroupHelper().getGroupCount();
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGroupForm(new GroupData("test11", "test11", "test11"));
+    app.getGroupHelper().fillGroupForm(new GroupData("test22", "test33", "test44"));
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
     int after = app.getGroupHelper().getGroupCount();  // кол-во групп ПОСЛЕ добавления
