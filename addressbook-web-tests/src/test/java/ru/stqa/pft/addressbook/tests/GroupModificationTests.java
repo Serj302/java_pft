@@ -22,7 +22,7 @@ public class GroupModificationTests extends TestBase{
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
     int after = app.getGroupHelper().getGroupCount();  // кол-во групп ПОСЛЕ добавления
-    Assert.assertEquals(after, before - 1); //кол-во групп ПОСЛЕ - должно совпасть с кол-вом ДО
+    Assert.assertEquals(after, before); //кол-во групп ПОСЛЕ - должно совпасть с кол-вом ДО
   }
 
 }
