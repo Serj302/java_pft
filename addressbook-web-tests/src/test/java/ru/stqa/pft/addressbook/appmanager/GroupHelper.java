@@ -27,10 +27,22 @@ public class GroupHelper extends BaseHelper{
   public void initGroupCreation() {
     click(By.name("new"));
   }
-
+/*
   public void selectGroup() {
     click(By.name("selected[]"));
   }
+*/
+
+// Модификация, для конкретного выбора группы
+
+  public void selectGroup(int index) {        // в качестве параметра - ИНДЕКС ЭЛЕМЕНТА
+//wd.findElements(By.name("selected[]"));    // поиск всех элементов по ЛОКАТОРУ selected[]
+//.get(index)                                // среди этих элементов, ОТБОР ПО ИНДЕКСУ
+//click                                      //именно по вбранному элементы - выполнить КЛИК
+
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
+
 
   public void deleteSelectedGroups() {
     click(By.name("delete"));

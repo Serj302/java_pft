@@ -32,7 +32,9 @@ public class GroupDeletionTests extends TestBase {
     if (! app.getGroupHelper().isThereAGroup()) {
       app.getGroupHelper().createGroup (new GroupData("test0", null, null));
     }
-    app.getGroupHelper().selectGroup();
+    app.getGroupHelper().selectGroup(before - 1);
+    // если нужно удалить 1 группу передаем 0(selectGroup(0)),
+    // если последнюю - before - 1, т.к. индекс последнего элемента -1
     app.getGroupHelper().deleteSelectedGroups();
     app.getGroupHelper().returnToGroupPage();
     int after = app.getGroupHelper().getGroupCount();  // кол-во групп ПОСЛЕ добавления
