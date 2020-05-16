@@ -56,9 +56,30 @@ public class GroupHelper extends BaseHelper{
     return isElementPresent(By.name("selected[]"));
   }
 
+// контроль кол-ва элементов
+// метод позволяет узнать кол-во групп
+  public int getGroupCount() {
+    return wd.findElements(By.name("selected[]")).size();
+// findElements - возвращает список ВСЕХ элементов, т.е. объект типа - List, и размер списка(size)
 
+// ...implicitlyWait(0, TimeUnit.SECONDS) - если будет 60, а не 0, то драйвер(wd),
+// подождет, не появятся ли элементы и только по истечению 60 сек - он вернет пустой список, состоящий из 0 элементов
 
-
-
+  }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
