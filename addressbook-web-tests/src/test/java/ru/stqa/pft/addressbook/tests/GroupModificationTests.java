@@ -19,7 +19,7 @@ public class GroupModificationTests extends TestBase{
 // контроль кол-ва элементов
 // обращать внимание с какой страницы начинается подсчет
 //  int before = app.getGroupHelper().getGroupCount();              // кол-во групп ДО добавления
-// меняем колличество групп на список
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() -1);      // если надо выбрать НЕ последний элемент, а 2й - ...selectGroup(1);
     app.getGroupHelper().initGroupModification();
@@ -27,7 +27,7 @@ public class GroupModificationTests extends TestBase{
     app.getGroupHelper().submitGroupModification();
     app.getGroupHelper().returnToGroupPage();
 //  int after = app.getGroupHelper().getGroupCount();             // кол-во групп ПОСЛЕ добавления
-// меняем колличество групп на список
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size());             //кол-во групп ПОСЛЕ - должно совпасть с кол-вом ДО
   }

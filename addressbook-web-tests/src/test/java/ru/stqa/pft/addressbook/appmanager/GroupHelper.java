@@ -86,7 +86,7 @@ public class GroupHelper extends BaseHelper{
   }
 
 /*
-// Метод для получения списка элементов с web-страницы
+// Метод для получения списка элементов/групп с web-страницы
 // Сравнения размера спсисков
   public List<GroupData> getGroupList() {
 

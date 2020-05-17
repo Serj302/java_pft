@@ -39,15 +39,17 @@ public class GroupCreationTests extends TestBase {
     public void testGroupCreation() throws Exception {
       app.getNavigationHelper().gotoGroupPage();
 //    int before = app.getGroupHelper().getGroupCount();              // кол-во групп ДО добавления
-// меняем колличество групп на список
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
       List<GroupData> before = app.getGroupHelper().getGroupList();  // before - содержит список элементов/ before - содержит список объектов типа GroupData
+
       app.getGroupHelper().createGroup(new GroupData("test3", "test_test", "test_test_test"));
+
 //    int after = app.getGroupHelper().getGroupCount();             // кол-во групп ПОСЛЕ добавления
-// меняем колличество групп на список
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
       List<GroupData> after = app.getGroupHelper().getGroupList();  // after - - содержит список элементов после создания новой группы
 
 // и проверка
-      Assert.assertEquals(after.size(), before.size() + 1);
+      Assert.assertEquals(after.size(), before.size() + 1); // сравнение РАЗМЕРОВ списка...
       // after.size() - размер списка ПОСЛЕ добавления = размеру before.size() - ДО, +1
     }
 
