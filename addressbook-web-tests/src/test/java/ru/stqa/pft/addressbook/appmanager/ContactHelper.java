@@ -1,16 +1,19 @@
-// Задание №8
-package ru.stqa.pft.addressbook.appmanager;
 
+package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.openqa.selenium.By.*;
 
-public class ContactHelper extends BaseHelper{
+public class ContactHelper extends BaseHelper {
 
   public ContactHelper(WebDriver wd) {
     super(wd);
@@ -56,43 +59,43 @@ public class ContactHelper extends BaseHelper{
 
     type(By.name("byear"), contactData.getByear());
 
-    /* выбор элемента из выпадающего списка:
-     *
-     1. new Select () - вспомогательный класс
+/* выбор элемента из выпадающего списка:
 
-     2. в качестве параметра - указывается элемент, который найден на странице приложения()
+1. new Select () - вспомогательный класс
+
+2. в качестве параметра - указывается элемент, который найден на странице приложения()
 
      new Select(wd.findElement(By.name("new_group"))
 
-     3. в объекте типа Select - вызвать метод
+3. в объекте типа Select - вызвать метод
 
      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 
-     4. при вызове new Select, в testContactModification - возникнет исключение, т.к. драйвер(wd.findElement)
+4. при вызове new Select, в testContactModification - возникнет исключение, т.к. драйвер(wd.findElement)
         не сможет найти элемент с таким локатором By.name("new_group"), т.к. его на странице просто нет.
 
-     5. чтобы исключение предотвратить - проверка:
+5. чтобы исключение предотвратить - проверка:
 
       if (isElementPresent(By.name("new_group"))) {   //если, элемент isElementPresent, с таким локатором - By.name("new_group"))
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 
-     // тогда использовать выпадающий список и выбрать какой-нибудь пункт
+// тогда использовать выпадающий список и выбрать какой-нибудь пункт
      }
 
-     6. метод isElementPresent - не существует, создаем его:
+6. метод isElementPresent - не существует, создаем его:
 
      protected boolean isElementPresent(By locator) {
 
-     // имя параметра-более общее, т.к. проверяется наличие/отсутсвие
+// имя параметра-более общее, т.к. проверяется наличие/отсутсвие
      произвольного элемента с произвольным локатором, при помощи этого метода
 
-     //далее сталкиваемся с ситуацией, когда нельзя предотвратить исключение,
+//далее сталкиваемся с ситуацией, когда нельзя предотвратить исключение,
        драйвер Selenium, не предоставляет возможности узнать за ранне, есть элемент на странице или нет
        можно этот элемент поискать
 
      wd.findElement(locator)
 
-     //если элемент есть, то он найдется, если элемента нет - будет выброшенно исключение,
+//если элемент есть, то он найдется, если элемента нет - будет выброшенно исключение,
        поэтому оборачиваем в try
 
      try {                                    // если элемент нашелся
@@ -102,7 +105,7 @@ public class ContactHelper extends BaseHelper{
      return false;                            // то возвращаем false
      }
 
-     // Метод isElementPresent - для проверки наличия/отсутсвия элемента.
+// Метод isElementPresent - для проверки наличия/отсутсвия элемента.
 
      testContactCreation - увидет на странице By.name("new_group") - и выберет значение из выпадающ списка по имени
      testContactModification - заметит, что такого элемента нет и пропустит эту строчку
@@ -110,13 +113,13 @@ public class ContactHelper extends BaseHelper{
         Метод получился достаточно общим, поэтому может быть использован и в других "помощниках",
         поэтому перенести его в BaseHelper
 
-     7. При случае, если поле By.name("new_group"), на форме создания контакта - потеряли, его там нет, тогда тест упадет.
+7. При случае, если поле By.name("new_group"), на форме создания контакта - потеряли, его там нет, тогда тест упадет.
         Чтобы этого не произошло, необходимо создать доп параметр в методе fillContactForm, который будет указывать:
         контакт создается или можифицируется.
 
      public void fillContactForm(ContactData contactData, boolean creation)
 
-        // boolean creation - передаем всего 2 значения:
+// boolean creation - передаем всего 2 значения:
                 true - означает, что это форма создания, и там должен быть элемент By.name("new_group")
                 false - означает, что это форма модификации, и элемент By.name("new_group") - отсутствует
 
@@ -127,27 +130,27 @@ public class ContactHelper extends BaseHelper{
 
      Добавить проверку на наличие нужного элемента на конкретной форме:
 
-         //если это форма создания - значит элемент By.name("new_group") должен быть
+//если это форма создания - значит элемент By.name("new_group") должен быть
 
      if (creation){
 
-         // и необходимо выбирать какой-то элемент/значение из этого списка
+// и необходимо выбирать какой-то элемент/значение из этого списка
 
      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
 
-        // если окажется, что элемента (By.name("new_group")) - нет, то ТЕСТ ДОЛЖЕН УПАСТЬ
+// если окажется, что элемента (By.name("new_group")) - нет, то ТЕСТ ДОЛЖЕН УПАСТЬ
 
-        //иначе, мы не на форме создания и...
+//иначе, мы не на форме создания и...
 
      } else {
      Assert.assertFalse(isElementPresent(By.name("new_group")));
      }
-        // ... в этом случае, элемента (By.name("new_group")) - быть не должно
-        // если окажется, что элемент (By.name("new_group")) - есть, то ТЕСТ ДОЛЖЕН УПАСТЬ
+// ... в этом случае, элемента (By.name("new_group")) - быть не должно
+// если окажется, что элемент (By.name("new_group")) - есть, то ТЕСТ ДОЛЖЕН УПАСТЬ
 
-     */
+*/
 
-    if (creation){
+    if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
@@ -160,8 +163,19 @@ public class ContactHelper extends BaseHelper{
     type(By.name("notes"), contactData.getNotes());
   }
 
+/*
   public void selectContact() {
     click(By.name("selected[]"));
+  }
+*/
+
+  // Модификация, для конкретного выбора контакта
+  public void selectContact(int index) {      // в качестве параметра - ИНДЕКС ЭЛЕМЕНТА (int index)
+//wd.findElements(By.name("selected[]"));    // поиск всех элементов по ЛОКАТОРУ selected[]
+//.get(index)                                // среди этих элементов, ОТБОР ПО ИНДЕКСУ
+//click                                      //именно по вбранному элементы - выполнить КЛИК
+
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void deletedContact() {
@@ -184,4 +198,42 @@ public class ContactHelper extends BaseHelper{
     return isElementPresent(By.name("selected[]"));
   }
 
+  // контроль кол-ва элементов
+// метод позволяет узнать кол-во контактов
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+/*
+  // Метод для получения списка элементов/контактов с web-страницы
+// Сравнения размера спсисков
+  public List<ContactData> getContactList() {
+// 1. создть список для заполнения
+    List<ContactData> contacts = new ArrayList<ContactData>();
+
+// 2. найти все элементы, котор имеют name-entry
+    List<WebElement> elements = wd.findElements(By.name("entry")); // поиск элементов по строкам
+
+// 3. пройти по всем найденным элементам в цикле и для каждого из них...
+    for (WebElement element : elements) {          // переменная element - пробегает по списку elements, т.е. цикл по строкам, т.е. element это строка таблицы
+
+// 4. из каждого такого элемента - получить текст, это будет текст всей строки целиком
+      String firstname = element.getText();       // в переменную firstname попадает текст всей строки целиком, (включая адреса, email-ы и прочее)
+
+//
+// чтобы с этой проблемой справиться, надо разбить строку на ячейки
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+// после чего можно будет брать текст из отдельных ячеек
+//
+
+
+// 5. Создать объект типа ContactData
+      ContactData contact = new ContactData(firstname, null, null, null, null, null,
+              null, null, null, null, null, null, null, null, null,
+              null, null, null, null, null, null); // firstname - имя контакта
+// 6. Добавление созданного объекта в список
+      contacts.add(contact);
+    }
+    return contacts;
+  }
+*/
 }

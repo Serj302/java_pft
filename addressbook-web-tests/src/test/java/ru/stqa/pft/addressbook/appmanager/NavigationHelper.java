@@ -81,6 +81,7 @@ public class NavigationHelper extends BaseHelper{
     click(By.linkText("add new"));
   }
 
+  /*
    public void returnToHomePage() {
     // Присутсвие на нужой странице,
    // т.е. клик, если мы не находимся на нужной странице (с таблицей id= maintable)
@@ -88,6 +89,11 @@ public class NavigationHelper extends BaseHelper{
     if (isElementPresent(By.id("maintable"))){  // если элемент с id = maintable
     return;                                   // то делать ничего не надо
     }
+    click(By.linkText("home"));
+  }
+*/
+
+  public void returnToHomePage() {
     click(By.linkText("home"));
   }
 

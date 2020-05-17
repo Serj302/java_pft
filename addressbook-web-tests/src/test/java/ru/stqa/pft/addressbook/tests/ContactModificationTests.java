@@ -1,5 +1,6 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
@@ -9,7 +10,6 @@ public class ContactModificationTests extends TestBase{
 
   public void testContactModification(){
     if (! app.getContactHelper().isThereAContac()){
-
       app.getNavigationHelper().gotoContactPage();
       app.getContactHelper().fillContactForm(new ContactData
                       (
@@ -39,6 +39,8 @@ public class ContactModificationTests extends TestBase{
       app.getContactHelper().submitContactCreation();
       app.getNavigationHelper().returnToHomePage();
     }
+    int before = app.getContactHelper().getContactCount();
+    app.getContactHelper().selectContact(before -1); // выбор последнего контакта, если надо выбрать НЕ последний элемент, а 2й - ...selectContact(1);
     app.getContactHelper().editContact();
     app.getContactHelper().fillContactForm(new ContactData
                     (
@@ -58,7 +60,7 @@ public class ContactModificationTests extends TestBase{
                             null,
                             null,
                             null,
-                            null,
+                            null,       // срабатывает time-out
                             null,
                             null,
                             null,
@@ -67,7 +69,8 @@ public class ContactModificationTests extends TestBase{
             false);
     app.getContactHelper().updateModification();
     app.getNavigationHelper().returnToHomePage();
-
+    int after = app.getContactHelper().getContactCount();
+    Assert.assertEquals(after, before);
   }
 
 }
