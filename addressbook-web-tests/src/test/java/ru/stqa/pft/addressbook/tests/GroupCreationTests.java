@@ -42,7 +42,7 @@ public class GroupCreationTests extends TestBase {
 // меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
       List<GroupData> before = app.getGroupHelper().getGroupList();  // before - содержит список элементов/ before - содержит список объектов типа GroupData
 
-      app.getGroupHelper().createGroup(new GroupData("test3", "test_test", "test_test_test"));
+      app.getGroupHelper().createGroup(new GroupData("test1", "test_test", "test_test_test"));
 
 //    int after = app.getGroupHelper().getGroupCount();             // кол-во групп ПОСЛЕ добавления
 // меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
