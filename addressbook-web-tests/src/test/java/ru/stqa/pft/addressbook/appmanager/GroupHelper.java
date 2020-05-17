@@ -2,7 +2,11 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelper extends BaseHelper{
 
@@ -41,6 +45,7 @@ public class GroupHelper extends BaseHelper{
 //click                                      //именно по вбранному элементы - выполнить КЛИК
 
     wd.findElements(By.name("selected[]")).get(index).click();
+
   }
 
 
@@ -63,10 +68,11 @@ public class GroupHelper extends BaseHelper{
     returnToGroupPage();
   }
 
-  // проверка наличия элемента, того самого, которого пытаемся выбирать в selectGroup
+// проверка наличия элемента, того самого, которого пытаемся выбирать в selectGroup
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
+
 
 // контроль кол-ва элементов
 // метод позволяет узнать кол-во групп
@@ -78,6 +84,47 @@ public class GroupHelper extends BaseHelper{
 // подождет, не появятся ли элементы и только по истечению 60 сек - он вернет пустой список, состоящий из 0 элементов
 
   }
+
+/*
+// Метод для получения списка элементов с web-страницы
+// Сравнения размера спсисков
+  public List<GroupData> getGroupList() {
+
+// 1. создть список для заполнения
+    List<GroupData> groups = new ArrayList<GroupData>();
+
+// 2. найти все элементы, котор имеют тег span и класс group
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+
+// 3. пройти по всем найденным элементам в цикле и для каждого из них...
+    for (WebElement element : elements){  // переменная element - пробегает по списку elements
+
+// 4. из каждого такого элемента - получаем текст, это и будет имя группы
+      String name = element.getText();
+
+// 5. Создать объект типа GroupData
+      GroupData group = new GroupData(name, null, null); // name - имя группы
+
+// 6. Добавление созданного объекта в список
+      groups.add(group);
+    }
+
+    return groups;
+  }
+ */
+
+// Метод для получения списка элементов с web-страницы
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements){
+      String name = element.getText();
+      GroupData group = new GroupData(name, null, null); // name - имя группы
+      groups.add(group);
+    }
+    return groups;
+  }
+
 
 }
 
