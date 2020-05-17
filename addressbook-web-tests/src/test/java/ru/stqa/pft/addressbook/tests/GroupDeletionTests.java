@@ -34,7 +34,9 @@ public class GroupDeletionTests extends TestBase {
 // контроль кол-ва элементов
 // обращать внимание с какой страницы начинается подсчет
 //  int before = app.getGroupHelper().getGroupCount();              // кол-во групп ДО добавления
-// меняем колличество групп на список
+
+// СРАВНЕНИЕ РАЗМЕРА списков before и after
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);      // выбор последней группы, если надо выбрать НЕ последний элемент, а 2й - ...selectGroup(1);
 // если нужно удалить 1 группу передаем 0(selectGroup(0)),
@@ -42,12 +44,41 @@ public class GroupDeletionTests extends TestBase {
     app.getGroupHelper().deleteSelectedGroups();
     app.getGroupHelper().returnToGroupPage();
 //  int after = app.getGroupHelper().getGroupCount();             // кол-во групп ПОСЛЕ добавления
-// меняем колличество групп на список
+// меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(), before.size() - 1); //кол-во групп ПОСЛЕ - должно уменьшиться по отношению с кол-вом ДО - на 1
+
+/* СРАВНЕНИЕ списков групп (чтобы убедиться в том, что группа удалилась корректно )
+* before(старый) список - содержит на 1 элемент больше, чем after(новый)
+* чтобы сравнить списки - они должны быть равными, для этого надо удалить в старом списке лишний элемент
+* удалить лишний элемент, с тем же индексом
+*/
+    before.remove(before.size() - 1);
+// теперь before/старый список - содрежит те же элементы, что и after/новый список
+
+/* проверка совпадений списка
+    for (int i = 0; i < after.size(); i++){
+      Assert.assertEquals(before.get(i), after.get(i));  // сравнение 2х элементов с одинаковыми индексами
+    }
+*/
+// можно проверить совпадение и без цикла
+    Assert.assertEquals(before, after);
+
+
+
   }
 
 
 
 
 }
+
+
+
+
+
+
+
+
+
+
