@@ -216,8 +216,12 @@ public class ContactHelper extends BaseHelper {
 // 4. из каждого такого элемента - получить текст, это будет текст из столбцов: firstname, lastname
       String firstname = element.getText();
       String lastname = element.getText();
+// Создание идентификатора, котор передается в Конструктор
+      String id = element.findElement(By.xpath("//td/input")).getAttribute("value");
+     // String id = element.findElement(By.name("selected[]).getAttribute("value");
+//   // String id = element.findElement(By.tagName("input")).getAttribute("value");
 // 5. Создать объект типа ContactData
-      ContactData contact = new ContactData(firstname, null, lastname, null, null, null,
+      ContactData contact = new ContactData(id,firstname, null, lastname, null, null, null,
               null, null, null, null, null, null, null, null, null,
               null, null, null, null, null, null); // firstname - имя контакта
 // 6. Добавление созданного объекта в список

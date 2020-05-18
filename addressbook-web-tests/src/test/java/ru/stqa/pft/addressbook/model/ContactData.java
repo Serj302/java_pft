@@ -3,6 +3,7 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
+  private final String id;
   private final String firstname;
   private final String middlename;
   private final String lastname;
@@ -47,7 +48,55 @@ public class ContactData {
           String address2,
           String phone2,
           String notes) {
+      this.id = null;
+      this.firstname = firstname;
+      this.middlename = middlename;
+      this.lastname = lastname;
+      this.nickname = nickname;
+      this.photo = photo;
+      this.title = title;
+      this.company = company;
+      this.address = address;
+      this.tel_home = tel_home;
+      this.tel_mobile = tel_mobile;
+      this.tel_work = tel_work;
+      this.fax = fax;
+      this.email = email;
+      this.homepage = homepage;
+      this.bday = bday;
+      this.bmonth = bmonth;
+      this.byear = byear;
+      this.group = group;
+      this.address2 = address2;
+      this.phone2 = phone2;
+      this.notes = notes;
+    }
 
+  public ContactData(
+          String id,
+          String firstname,
+          String middlename,
+          String lastname,
+          String nickname,
+          String photo,
+          String title,
+          String company,
+          String address,
+          String tel_home,
+          String tel_mobile,
+          String tel_work,
+          String fax,
+          String email,
+          String homepage,
+          String bday,
+          String bmonth,
+          String byear,
+          String group,
+          String address2,
+          String phone2,
+          String notes) {
+
+    this.id = id;
     this.firstname = firstname;
     this.middlename = middlename;
     this.lastname = lastname;
@@ -69,6 +118,10 @@ public class ContactData {
     this.address2 = address2;
     this.phone2 = phone2;
     this.notes = notes;
+  }
+
+  public String getId() {
+    return id;
   }
 
   public String getFirstname() {
@@ -158,23 +211,24 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "firstname='" + firstname + '\'' +
+            "id='" + id + '\'' +
+            ", firstname='" + firstname + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }
 
-// Необходим, чтобы указать Java, как сравнивать объекты типа ContactData
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     ContactData that = (ContactData) o;
-    return Objects.equals(firstname, that.firstname) &&
+    return Objects.equals(id, that.id) &&
+            Objects.equals(firstname, that.firstname) &&
             Objects.equals(lastname, that.lastname);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(firstname, lastname);
+    return Objects.hash(id, firstname, lastname);
   }
 }
