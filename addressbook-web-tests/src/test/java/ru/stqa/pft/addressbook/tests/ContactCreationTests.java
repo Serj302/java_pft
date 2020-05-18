@@ -21,9 +21,9 @@ public class ContactCreationTests extends TestBase {
     app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().fillContactForm(new ContactData
                     (
-                            "Александр",
-                            "Александрович",
-                            "Блок",
+                            "Сидор",
+                            "Petrovich3",
+                            "Сидоров",
                             "TCC",
                             "C:\\tools\\Koala.jpg",
                             "Hello",
@@ -51,5 +51,10 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> after = app.getContactHelper().getContactList();
 
     Assert.assertEquals(after.size(), before.size() + 1);
+
+//СРАВНЕНИЕ СПИСКОВ
+
+
+
   }
 }

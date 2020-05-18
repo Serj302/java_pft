@@ -54,6 +54,7 @@ public class GroupData {
             '}';
   }
 
+// Необходим, чтобы указать Java, как сравнивать объекты типа GroupData
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

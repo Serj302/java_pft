@@ -56,7 +56,7 @@ public class GroupCreationTests extends TestBase {
       // after.size() - размер списка ПОСЛЕ добавления = размеру before.size() - ДО, +1
     }
 
-*//*---------------------TOTAL--------------------------------------------
+*//*---------------------RESULT--------------------------------------------
 
   @Test
   public void testGroupCreation() throws Exception {
@@ -109,7 +109,7 @@ public class GroupCreationTests extends TestBase {
 // преобразование списка в множества
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 */
-/*---------------------TOTAL--------------------------------------------
+/*---------------------RESULT--------------------------------------------
 
   @Test
   public void testGroupCreation() throws Exception {
@@ -221,7 +221,7 @@ public class GroupCreationTests extends TestBase {
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 
-*//*---------------------TOTAL--------------------------------------------*/
+*//*---------------------RESULT--------------------------------------------*/
 
      @Test
 
