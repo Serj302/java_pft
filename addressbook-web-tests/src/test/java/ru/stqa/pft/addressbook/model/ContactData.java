@@ -163,6 +163,7 @@ public class ContactData {
             '}';
   }
 
+// Необходим, чтобы указать Java, как сравнивать объекты типа ContactData
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
