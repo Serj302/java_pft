@@ -120,7 +120,8 @@ public class GroupHelper extends BaseHelper{
     for (WebElement element : elements){
       String name = element.getText();
 // добавить id группы, он передается в конструктор и он используется при сравнении
-      String id = element.findElement(By.tagName("input")).getAttribute("value"); // поиск елемента, внутри другого элемента
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); // поиск елемента, внутри другого элемента
+// Integer.parseInt - преобразовать строку в число
       GroupData group = new GroupData(id, name, null, null); // name - имя группы
       groups.add(group);
     }

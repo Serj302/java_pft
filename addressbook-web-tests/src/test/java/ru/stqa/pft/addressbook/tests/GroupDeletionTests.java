@@ -12,6 +12,7 @@ public class GroupDeletionTests extends TestBase {
     public void testGroupDeletion() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
 /* Проверка и обеспечение выполнения предусловий.
+
 *  Проверка на наличие группы. Если группы нет - создать.
 
 *  создать метод "наличия группы" - isThereAGroup
@@ -32,10 +33,12 @@ public class GroupDeletionTests extends TestBase {
     }
 
 // контроль кол-ва элементов
+
 // обращать внимание с какой страницы начинается подсчет
 //  int before = app.getGroupHelper().getGroupCount();              // кол-во групп ДО добавления
 
 // СРАВНЕНИЕ РАЗМЕРА списков before и after
+
 // меняем КОЛЛИЧЕСТВО групп на СПИСОК групп
     List<GroupData> before = app.getGroupHelper().getGroupList();
     app.getGroupHelper().selectGroup(before.size() - 1);      // выбор последней группы, если надо выбрать НЕ последний элемент, а 2й - ...selectGroup(1);
@@ -49,6 +52,7 @@ public class GroupDeletionTests extends TestBase {
     Assert.assertEquals(after.size(), before.size() - 1); //кол-во групп ПОСЛЕ - должно уменьшиться по отношению с кол-вом ДО - на 1
 
 /* СРАВНЕНИЕ списка групп (чтобы убедиться в том, что группа удалилась корректно )
+
 * before(старый) список - содержит на 1 элемент больше, чем after(новый)
 * чтобы сравнить списки - они должны быть равными, для этого надо удалить в старом списке лишний элемент
 * удалить лишний элемент, с тем же индексом
