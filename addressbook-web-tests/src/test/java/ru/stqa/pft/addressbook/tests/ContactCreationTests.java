@@ -14,16 +14,16 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void testContactCreation() throws Exception {
-  int before = app.getContactHelper().getContactCount();
-/*  меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
+//  int before = app.getContactHelper().getContactCount();
+//  меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-*/
+
     app.getNavigationHelper().gotoContactPage();
     app.getContactHelper().fillContactForm(new ContactData
                     (
-                            "Михаил",
-                            "Юрьевич",
-                            "Лермонтов",
+                            "Александр",
+                            "Александрович",
+                            "Блок",
                             "TCC",
                             "C:\\tools\\Koala.jpg",
                             "Hello",
@@ -46,10 +46,10 @@ public class ContactCreationTests extends TestBase {
             true);
     app.getContactHelper().submitContactCreation();
     app.getNavigationHelper().returnToHomePage();
-    int after = app.getContactHelper().getContactCount();
-/* меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
+//    int after = app.getContactHelper().getContactCount();
+// меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
     List<ContactData> after = app.getContactHelper().getContactList();
- */
-    Assert.assertEquals(after, before + 1);
+
+    Assert.assertEquals(after.size(), before.size() + 1);
   }
 }

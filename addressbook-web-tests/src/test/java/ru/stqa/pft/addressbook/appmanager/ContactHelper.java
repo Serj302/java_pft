@@ -173,7 +173,7 @@ public class ContactHelper extends BaseHelper {
   public void selectContact(int index) {      // в качестве параметра - ИНДЕКС ЭЛЕМЕНТА (int index)
 //wd.findElements(By.name("selected[]"));    // поиск всех элементов по ЛОКАТОРУ selected[]
 //.get(index)                                // среди этих элементов, ОТБОР ПО ИНДЕКСУ
-//click                                      //именно по вбранному элементы - выполнить КЛИК
+//click                                      //именно по вбранному элементу - выполнить КЛИК
 
     wd.findElements(By.name("selected[]")).get(index).click();
   }
@@ -203,31 +203,21 @@ public class ContactHelper extends BaseHelper {
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
-/*
-  // Метод для получения списка элементов/контактов с web-страницы
+
+// Метод для получения списка элементов/контактов с web-страницы
 // Сравнения размера спсисков
   public List<ContactData> getContactList() {
 // 1. создть список для заполнения
     List<ContactData> contacts = new ArrayList<ContactData>();
-
-// 2. найти все элементы, котор имеют name-entry
-    List<WebElement> elements = wd.findElements(By.name("entry")); // поиск элементов по строкам
-
+// 2. найти все элементы, котор имеют td/input
+    List<WebElement> elements = wd.findElements(By.xpath("//td/input")); // поиск элементов по столбцам
 // 3. пройти по всем найденным элементам в цикле и для каждого из них...
-    for (WebElement element : elements) {          // переменная element - пробегает по списку elements, т.е. цикл по строкам, т.е. element это строка таблицы
-
-// 4. из каждого такого элемента - получить текст, это будет текст всей строки целиком
-      String firstname = element.getText();       // в переменную firstname попадает текст всей строки целиком, (включая адреса, email-ы и прочее)
-
-//
-// чтобы с этой проблемой справиться, надо разбить строку на ячейки
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-// после чего можно будет брать текст из отдельных ячеек
-//
-
-
+    for (WebElement element : elements) {    // переменная element - пробегает по списку elements, т.е. цикл по столбцам, т.е. element это столбец таблицы
+// 4. из каждого такого элемента - получить текст, это будет текст из столбцов: firstname, lastname
+      String firstname = element.getText();
+      String lastname = element.getText();
 // 5. Создать объект типа ContactData
-      ContactData contact = new ContactData(firstname, null, null, null, null, null,
+      ContactData contact = new ContactData(firstname, null, lastname, null, null, null,
               null, null, null, null, null, null, null, null, null,
               null, null, null, null, null, null); // firstname - имя контакта
 // 6. Добавление созданного объекта в список
@@ -235,5 +225,6 @@ public class ContactHelper extends BaseHelper {
     }
     return contacts;
   }
-*/
+
+
 }

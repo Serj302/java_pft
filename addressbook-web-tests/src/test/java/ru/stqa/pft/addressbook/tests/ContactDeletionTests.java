@@ -43,14 +43,12 @@ public class ContactDeletionTests extends TestBase{
         app.getContactHelper().submitContactCreation();
         app.getNavigationHelper().returnToHomePage();
      }
-      int before = app.getContactHelper().getContactCount();
-      //List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-      app.getContactHelper().selectContact(before -1);
+      List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
+      app.getContactHelper().selectContact(before.size() -1);
       app.getContactHelper().deletedContact();
       app.getContactHelper().confirmationDeletedContact();
       app.getNavigationHelper().returnToHomePage();       // нужен переход на "home" c 3 sec time-out, т.к. идет задержка после удаления
-      int after = app.getContactHelper().getContactCount();
-      //List<ContactData> after = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-      Assert.assertEquals(after, before - 1);
+      List<ContactData> after = app.getContactHelper().getContactList();  // меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
+      Assert.assertEquals(after.size(), before.size() - 1);
     }
   }
