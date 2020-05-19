@@ -42,9 +42,9 @@ public class ContactModificationTests extends TestBase{
       app.getNavigationHelper().returnToHomePage();
     }
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-    app.getContactHelper().selectContact(3);
+    app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().editContact();
-    ContactData contact = new ContactData (
+    ContactData contact = new ContactData (before.get(before.size() -1).getId(),
                     "Tom",
                     "Cruzeevich",
                     "Cruzer",
@@ -76,7 +76,7 @@ public class ContactModificationTests extends TestBase{
 // МНОЖЕСТВА
 
 // модифицировать старый список, удалить элемент С ТЕМ ЖЕ ИНДЕКСОМ, С КОТОРЫМ МОДИФИЦИРОВАЛИ
-    before.remove(3);
+    before.remove(before.size()-1);
 // добавить список, который должен появиться после модификации
     before.add(contact);                  // добавить в before new GroupData("test0", "test33", "test44")
 // преобразование списка в множества
