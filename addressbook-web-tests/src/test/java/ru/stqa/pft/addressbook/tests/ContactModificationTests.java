@@ -43,8 +43,8 @@ public class ContactModificationTests extends TestBase{
     }
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
     app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().editContact();
-    ContactData contact = new ContactData (before.get(before.size() -1).getId(),
+    app.getContactHelper().editContact();  //***  надо параметризовать этот метод и в качестве параметра передавать индекс последней строки в списке контактов.  ****
+    ContactData contact = new ContactData (before.get(before.size() -1).getId(),  // использование id контакта
                     "Tom",
                     "Cruzeevich",
                     "Cruzer",
