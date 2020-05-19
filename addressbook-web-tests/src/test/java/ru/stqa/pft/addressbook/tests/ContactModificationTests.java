@@ -19,23 +19,8 @@ public class ContactModificationTests extends TestBase{
               "Petrovich3",
               "Сидоров",
               "IPI",
-              "C:\\tools\\Koala.jpg",
-              "Hello",
-              "Home",
-              "Moscow, st. Lenina 27, kv. 5",
-              "+7495256231",
-              "+79604512309",
-              "+7495255231 (dob 999)",
-              "+7812",
-              "IPI@gmail.com",
-              "software",
-              "9",
-              "September",
-              "1999",
-              "[none]",
-              "Moscow, st. Lenina 72, kv. 55",
-              "+7495",
-              "Test contact"
+              null
+
       );
       app.getContactHelper().fillContactForm(contact, true);
       app.getContactHelper().submitContactCreation();
@@ -44,27 +29,11 @@ public class ContactModificationTests extends TestBase{
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
     app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().editContact();  //***  надо параметризовать этот метод и в качестве параметра передавать индекс последней строки в списке контактов.  ****
-    ContactData contact = new ContactData (before.get(before.size() -1).getId(),  // использование id контакта
+    ContactData contact = new ContactData (before.get(before.size() -1).getId(),  // использование id старого контакта (до модификации)
                     "Tom",
                     "Cruzeevich",
                     "Cruzer",
                     "TCC",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,       // срабатывает time-out
-                    null,
-                    null,
-                    null,
                     null
             );
     app.getContactHelper().fillContactForm(contact,false);
