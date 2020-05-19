@@ -42,7 +42,7 @@ public class ContactModificationTests extends TestBase{
       app.getNavigationHelper().returnToHomePage();
     }
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-    app.getContactHelper().selectContact(3); // выбор последнего контакта, если надо выбрать НЕ последний элемент, а 2й - ...selectContact(1);
+    app.getContactHelper().selectContact(3);
     app.getContactHelper().editContact();
     ContactData contact = new ContactData (
                     "Tom",

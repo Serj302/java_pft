@@ -204,22 +204,27 @@ public class ContactHelper extends BaseHelper {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-// Метод для получения списка элементов/контактов с web-страницы
+/* Метод для получения списка элементов/контактов с web-страницы
 // Сравнения размера спсисков
   public List<ContactData> getContactList() {
 // 1. создть список для заполнения
     List<ContactData> contacts = new ArrayList<ContactData>();
-// 2. найти все элементы, котор имеют td/input
-    List<WebElement> elements = wd.findElements(By.xpath("//td/input")); // поиск элементов по столбцам
+
+// 2. лучше искать строки таблицы и устраивать цикл по строкам таблицы. тогда каждую строку можно было бы разбить на ячейки
+    List<WebElement> elements = wd.findElements(By.name("entry")); // поиск элементов по строкам
+
 // 3. пройти по всем найденным элементам в цикле и для каждого из них...
-    for (WebElement element : elements) {    // переменная element - пробегает по списку elements, т.е. цикл по столбцам, т.е. element это столбец таблицы
+    for (WebElement element : elements) {    // переменная element - пробегает по списку elements, т.е. цикл по строкам, т.е. element это столбец таблицы
+
 // 4. из каждого такого элемента - получить текст, это будет текст из столбцов: firstname, lastname
       String firstname = element.getText();
       String lastname = element.getText();
+
+//каждую строку разбить на ячейки
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
 // Создание идентификатора, котор передается в Конструктор
-      String id = element.findElement(By.xpath("//td/input")).getAttribute("value");
-     // String id = element.findElement(By.name("selected[]).getAttribute("value");
-//   // String id = element.findElement(By.tagName("input")).getAttribute("value");
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
 // 5. Создать объект типа ContactData
       ContactData contact = new ContactData(id,firstname, null, lastname, null, null, null,
               null, null, null, null, null, null, null, null, null,
@@ -229,6 +234,24 @@ public class ContactHelper extends BaseHelper {
     }
     return contacts;
   }
+*/
 
+// Метод для получения списка элементов/контактов с web-страницы
+  public List<ContactData> getContactList() {
+
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      String lastname = element.getText();
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
+      ContactData contact = new ContactData(id,firstname, null, lastname, null, null, null,
+              null, null, null, null, null, null, null, null, null,
+              null, null, null, null, null, null); // firstname - имя контакта
+      contacts.add(contact);
+    }
+    return contacts;
+  }
 
 }
