@@ -6,6 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class ContactCreationTests extends TestBase {
@@ -16,33 +17,31 @@ public class ContactCreationTests extends TestBase {
 //  int before = app.getContactHelper().getContactCount();
 //  меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-
     app.getNavigationHelper().gotoContactPage();
-    app.getContactHelper().fillContactForm(new ContactData
-                    (
-                            "С",
-                            "А",
-                            "Е",
-                            "TCC",
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            null,
-                            "[none]",
-                            null,
-                            null,
-                            null
-                    ),
-            true);
+    ContactData contact = new ContactData (
+                    "Сdf",
+                    "Аdf",
+                    "Еdf",
+                    "TCC",
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    null,
+                    "[none]",
+                    null,
+                    null,
+                    null
+            );
+    app.getContactHelper().fillContactForm(contact, true);
     app.getContactHelper().submitContactCreation();
     app.getNavigationHelper().returnToHomePage();
 //    int after = app.getContactHelper().getContactCount();
@@ -53,6 +52,16 @@ public class ContactCreationTests extends TestBase {
 
 //СРАВНЕНИЕ СПИСКОВ
 
+
+    int max = 0;
+    for (ContactData c : after){
+      if (c.getId() > max){
+        max = c.getId();
+      }
+    }
+    contact.setId(max);
+    before.add(contact);
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
 
   }
