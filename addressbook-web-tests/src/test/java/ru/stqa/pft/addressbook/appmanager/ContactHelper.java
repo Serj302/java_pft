@@ -178,6 +178,8 @@ public class ContactHelper extends BaseHelper {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
+
+
   public void deletedContact() {
     click(xpath("//input[@value='Delete']"));
   }
@@ -186,8 +188,13 @@ public class ContactHelper extends BaseHelper {
     wd.switchTo().alert().accept();
   }
 
+/*
   public void editContact() {
     click(xpath("//img[@alt='Edit']"));
+  }
+*/
+  public void editContact(int index) {      // в качестве параметра - ндекс последней строки
+    wd.findElements(xpath("//img[@alt='Edit']")).get(index).click();
   }
 
   public void updateModification() {
@@ -214,22 +221,22 @@ public class ContactHelper extends BaseHelper {
     List<WebElement> elements = wd.findElements(By.name("entry")); // поиск элементов по строкам
 
 // 3. пройти по всем найденным элементам в цикле и для каждого из них...
-    for (WebElement element : elements) {    // переменная element - пробегает по списку elements, т.е. цикл по строкам, т.е. element это столбец таблицы
+    for (WebElement element : elements) {    // переменная element - пробегает по списку elements, т.е. цикл по строкам, т.е. element это строка таблицы
 
-// 4. из каждого такого элемента - получить текст, это будет текст из столбцов: firstname, lastname
+// 4. каждую строку разбить на ячейки
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+
+// 5. из каждого такого элемента - получить текст, это будет текст из столбцов: firstname, lastname
       String firstname = element.getText();
       String lastname = element.getText();
 
-//каждую строку разбить на ячейки
-      List<WebElement> cells = element.findElements(By.tagName("td"));
-
 // Создание идентификатора, котор передается в Конструктор
       String id = element.findElement(By.tagName("input")).getAttribute("value");
-// 5. Создать объект типа ContactData
+// 6. Создать объект типа ContactData
       ContactData contact = new ContactData(id,firstname, null, lastname, null, null, null,
               null, null, null, null, null, null, null, null, null,
               null, null, null, null, null, null); // firstname - имя контакта
-// 6. Добавление созданного объекта в список
+// 7. Добавление созданного объекта в список
       contacts.add(contact);
     }
     return contacts;
@@ -242,13 +249,14 @@ public class ContactHelper extends BaseHelper {
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements) {
-      String firstname = element.getText();
-      String lastname = element.getText();
       List<WebElement> cells = element.findElements(By.tagName("td"));
+      String firstname = cells.get(2).getText();
+      String lastname = cells.get(1).getText();
+
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
       ContactData contact = new ContactData(id,firstname, null, lastname, null, null, null,
               null, null, null, null, null, null, null, null, null,
-              null, null, null, null, null, null); // firstname - имя контакта
+              null, null, null, null, null, null);
       contacts.add(contact);
     }
     return contacts;

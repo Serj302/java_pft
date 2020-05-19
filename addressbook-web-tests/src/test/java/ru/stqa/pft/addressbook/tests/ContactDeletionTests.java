@@ -44,7 +44,7 @@ public class ContactDeletionTests extends TestBase{
         app.getNavigationHelper().returnToHomePage();
      }
       List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
-      app.getContactHelper().selectContact(3);
+      app.getContactHelper().selectContact(before.size() - 1);
       app.getContactHelper().deletedContact();
       app.getContactHelper().confirmationDeletedContact();
       app.getNavigationHelper().returnToHomePage();       // нужен переход на "home" c 3 sec time-out, т.к. идет задержка после удаления
@@ -54,7 +54,7 @@ public class ContactDeletionTests extends TestBase{
 //СРАВНЕНИЕ СПИСКОВ
 
 // удалить лишний элемент, С ТЕМ ЖЕ ИНДЕКСОМ, С КОТОРЫМ УДАЛЯЛИ (стр. 47)
-      before.remove(3); // теперь before/старый список - содрежит те же элементы, что и after/новый список
+      before.remove(before.size() - 1); // теперь before/старый список - содрежит те же элементы, что и after/новый список
 /* ПРОВЕРКА СОВПАДЕНИЙ СПИСКА
       for (int i = 0; i < after.size(); i++){
         Assert.assertEquals(before.get(i), after.get(i));  // сравнение 2х элементов с одинаковыми индексами

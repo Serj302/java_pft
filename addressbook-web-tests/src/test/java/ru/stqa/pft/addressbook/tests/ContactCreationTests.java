@@ -1,4 +1,3 @@
-// Задание №8
 
 package ru.stqa.pft.addressbook.tests;
 
@@ -19,9 +18,9 @@ public class ContactCreationTests extends TestBase {
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
     app.getNavigationHelper().gotoContactPage();
     ContactData contact = new ContactData (
-                    "Сdf",
-                    "Аdf",
-                    "Еdf",
+                    "Александр",
+                    "Иванович",
+                    "Куприн",
                     "TCC",
                     null,
                     null,
@@ -52,17 +51,15 @@ public class ContactCreationTests extends TestBase {
 
 //СРАВНЕНИЕ СПИСКОВ
 
-
-    int max = 0;
-    for (ContactData c : after){
-      if (c.getId() > max){
-        max = c.getId();
-      }
-    }
-    contact.setId(max);
+    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 
-
   }
+
 }
+
+
+
+
+

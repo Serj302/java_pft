@@ -43,7 +43,7 @@ public class ContactModificationTests extends TestBase{
     }
     List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
     app.getContactHelper().selectContact(before.size()-1);
-    app.getContactHelper().editContact();  //***  надо параметризовать этот метод и в качестве параметра передавать индекс последней строки в списке контактов.  ****
+    app.getContactHelper().editContact(before.size()-1);  //***  надо параметризовать этот метод и в качестве параметра передавать индекс последней строки в списке контактов.  ****
     ContactData contact = new ContactData (before.get(before.size() -1).getId(),  // использование id контакта
                     "Tom",
                     "Cruzeevich",
@@ -74,13 +74,9 @@ public class ContactModificationTests extends TestBase{
     Assert.assertEquals(after.size(), before.size());
 
 // МНОЖЕСТВА
-
-// модифицировать старый список, удалить элемент С ТЕМ ЖЕ ИНДЕКСОМ, С КОТОРЫМ МОДИФИЦИРОВАЛИ
-    before.remove(before.size()-1);
-// добавить список, который должен появиться после модификации
-    before.add(contact);                  // добавить в before new GroupData("test0", "test33", "test44")
-// преобразование списка в множества
-    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+    before.remove(before.size()-1);    // модифицировать старый список, удалить элемент С ТЕМ ЖЕ ИНДЕКСОМ, С КОТОРЫМ МОДИФИЦИРОВАЛИ
+    before.add(contact);                    // добавить список, который должен появиться после модификации
+    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));  // преобразование списка в множества
 
   }
 
