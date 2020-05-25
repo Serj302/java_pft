@@ -229,7 +229,7 @@ public class GroupCreationTests extends TestBase {
 
     app.getNavigationHelper().gotoGroupPage();
     List<GroupData> before = app.getGroupHelper().getGroupList();
-    GroupData group = new GroupData("test4", "test_test", "test_test_test");
+    GroupData group = new GroupData("test2", "test_test", "test_test_test");
     app.getGroupHelper().createGroup(group);
     List<GroupData> after = app.getGroupHelper().getGroupList();
 

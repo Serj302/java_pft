@@ -179,6 +179,20 @@ public class ContactHelper extends BaseHelper {
   }
 
 
+// Метод модификации контактов (Актуализация кода), принимает 2 параметра: 1. индекс контакта для модификации, 2. Обект с новыми данными
+  public void modifyContact(int index, ContactData contact) {
+    selectContact(index);
+    editContact(index);
+    fillContactForm(contact, false);
+    updateModification();
+  }
+
+// Метод удаления контактов (Актуализация кода), принимает 1 параметр: индекс контакта для удаления
+  public void deletionContact(int index) {
+    selectContact(index);
+    deletedContact();
+    confirmationDeletedContact();
+  }
 
   public void deletedContact() {
     click(xpath("//input[@value='Delete']"));

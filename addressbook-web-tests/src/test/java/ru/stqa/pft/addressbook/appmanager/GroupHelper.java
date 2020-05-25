@@ -68,6 +68,15 @@ public class GroupHelper extends BaseHelper{
     returnToGroupPage();
   }
 
+ // Метод модификации групп (Актуализация кода), принимает 2 параметра: 1. индекс группы для модификации, 2. Обект с новыми данными
+  public void modifyGroup(int index, GroupData group) {
+    selectGroup(index);
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
 // проверка наличия элемента, того самого, которого пытаемся выбирать в selectGroup
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
