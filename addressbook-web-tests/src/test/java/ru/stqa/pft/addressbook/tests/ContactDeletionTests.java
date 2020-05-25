@@ -12,8 +12,8 @@ public class ContactDeletionTests extends TestBase{
   @BeforeMethod
   public void ensurePreconditionsDel() {
   // Проверка на наличие контакта. Если контакта нет - создать. (По аналогии testGroupDeletion)
-    if (!app.getContactHelper().isThereAContac()){
-      app.getNavigationHelper().gotoContactPage();
+    if (app.contacts().list().size() == 0){
+      app.goTo().сontactPage();
       ContactData contact = new ContactData (
                     "Сидор",
                     "Petrovich3",
@@ -36,20 +36,20 @@ public class ContactDeletionTests extends TestBase{
                     null,
                     null,
                     null);
-    app.getContactHelper().fillContactForm(contact,true);
-    app.getContactHelper().submitContactCreation();
-    app.getNavigationHelper().returnToHomePage();
+    app.contacts().fill(contact,true);
+    app.contacts().submit();
+    app.goTo().homePage();
     }
   }
 
     @Test /*(enabled = false )*/
     public void testContactDeletion(){
 
-      List<ContactData> before = app.getContactHelper().getContactList();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
+      List<ContactData> before = app.contacts().list();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
       int index = 0;
-      app.getContactHelper().deletionContact(index);
-      app.getNavigationHelper().returnToHomePage();       // нужен переход на "home" c 3 sec time-out, т.к. идет задержка после удаления
-      List<ContactData> after = app.getContactHelper().getContactList();  // меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
+      app.contacts().deletion(index);
+      app.goTo().homePage();       // нужен переход на "home" c 3 sec time-out, т.к. идет задержка после удаления
+      List<ContactData> after = app.contacts().list();  // меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
       Assert.assertEquals(after.size(), before.size() - 1);
 
 //СРАВНЕНИЕ СПИСКОВ

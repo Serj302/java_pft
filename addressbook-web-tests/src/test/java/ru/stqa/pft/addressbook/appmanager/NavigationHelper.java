@@ -68,7 +68,7 @@ public class NavigationHelper extends BaseHelper{
 
  */
 
-  public void gotoGroupPage() {
+  public void groupPage() {
     if (isElementPresent(By.tagName("h1"))
             && wd.findElement(By.tagName("h1")).getText().equals("Groups")
             && isElementPresent(By.name("new"))) {
@@ -77,7 +77,7 @@ public class NavigationHelper extends BaseHelper{
     click(By.linkText("groups"));
   }
 
-  public void gotoContactPage() {
+  public void сontactPage() {
     click(By.linkText("add new"));
   }
 
@@ -93,7 +93,7 @@ public class NavigationHelper extends BaseHelper{
   }
 */
 
-  public void returnToHomePage() {
+  public void homePage() {
     click(By.linkText("home"));
   }
 

@@ -19,11 +19,11 @@ public class ContactHelper extends BaseHelper {
     super(wd);
   }
 
-  public void submitContactCreation() {
+  public void submit() {
     click(xpath("(//input[@name='submit'])[2]"));
   }
 
-  public void fillContactForm(ContactData contactData, boolean creation) {
+  public void fill(ContactData contactData, boolean creation) {
 
     type(By.name("firstname"), contactData.getFirstname());
 
@@ -180,15 +180,15 @@ public class ContactHelper extends BaseHelper {
 
 
 // Метод модификации контактов (Актуализация кода), принимает 2 параметра: 1. индекс контакта для модификации, 2. Обект с новыми данными
-  public void modifyContact(int index, ContactData contact) {
+  public void modify(int index, ContactData contact) {
     selectContact(index);
     editContact(index);
-    fillContactForm(contact, false);
+    fill(contact, false);
     updateModification();
   }
 
 // Метод удаления контактов (Актуализация кода), принимает 1 параметр: индекс контакта для удаления
-  public void deletionContact(int index) {
+  public void deletion(int index) {
     selectContact(index);
     deletedContact();
     confirmationDeletedContact();
@@ -258,7 +258,7 @@ public class ContactHelper extends BaseHelper {
 */
 
 // Метод для получения списка элементов/контактов с web-страницы
-  public List<ContactData> getContactList() {
+  public List<ContactData> list() {
 
     List<ContactData> contacts = new ArrayList<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
