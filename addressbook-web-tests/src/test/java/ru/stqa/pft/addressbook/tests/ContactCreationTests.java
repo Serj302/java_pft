@@ -12,7 +12,7 @@ import java.util.List;
 public class ContactCreationTests extends TestBase {
 
 
-  @Test
+  @Test (enabled = false)
   public void testContactCreation() throws Exception {
 //  int before = app.getContactHelper().getContactCount();
 //  меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
