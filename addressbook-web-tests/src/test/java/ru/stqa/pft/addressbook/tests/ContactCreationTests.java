@@ -17,29 +17,8 @@ public class ContactCreationTests extends TestBase {
 //  меняем КОЛЛИЧЕСТВО контактов на СПИСОК контактов
     List<ContactData> before = app.contacts().list();  // before - содержит список элементов/ before - содержит список объектов типа ContactData
     app.goTo().сontactPage();
-    ContactData contact = new ContactData (
-                    "Александр",
-                    "Иванович",
-                    "Куприн",
-                    "TCC",
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    null,
-                    "[none]",
-                    null,
-                    null,
-                    null
-            );
+    ContactData contact = new ContactData()
+            .withFirstname ("Александр").withMiddlename("Иванович").withLastname("Куприн").withNickname("TCC").withGroup("[none]");
     app.contacts().fill(contact, true);
     app.contacts().submit();
     app.goTo().homePage();

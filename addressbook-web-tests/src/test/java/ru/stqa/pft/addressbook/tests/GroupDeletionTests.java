@@ -85,7 +85,7 @@ public class GroupDeletionTests extends TestBase {
    public void ensurePreconditions(){
      app.goTo().groupPage();
      if (app.group().list().size() == 0) {  /*if (! app.group().isThereAGroup()) {  - isThereAGroup() - заменили на альтернаивн проверку */
-       app.group().create(new GroupData("test0", null, null));
+       app.group().create(new GroupData().withName("test2"));
      }
    }
 

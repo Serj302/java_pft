@@ -136,9 +136,7 @@ public class GroupHelper extends BaseHelper{
       String name = element.getText();
 // добавить id группы, он передается в конструктор и он используется при сравнении
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); // поиск елемента, внутри другого элемента
-// Integer.parseInt - преобразовать строку в число
-      GroupData group = new GroupData(id, name, null, null); // name - имя группы
-      groups.add(group);
+      groups.add(new GroupData().withId(id).withName(name));
     }
     return groups;
   }

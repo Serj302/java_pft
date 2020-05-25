@@ -3,125 +3,138 @@ package ru.stqa.pft.addressbook.model;
 import java.util.Objects;
 
 public class ContactData {
-  private int id;
-  private final String firstname;
-  private final String middlename;
-  private final String lastname;
-  private final String nickname;
-  private final String photo;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String tel_home;
-  private final String tel_mobile;
-  private final String tel_work;
-  private final String fax;
-  private final String email;
-  private final String homepage;
-  private final String bday;
-  private final String bmonth;
-  private final String byear;
-  private final String group;
-  private final String address2;
-  private final String phone2;
-  private final String notes;
+  private int id = Integer.MAX_VALUE;
+  private  String firstname;
+  private  String middlename;
+  private  String lastname;
+  private  String nickname;
+  private  String photo;
+  private  String title;
+  private  String company;
+  private  String address;
+  private  String tel_home;
+  private  String tel_mobile;
+  private  String tel_work;
+  private  String fax;
+  private  String email;
+  private  String homepage;
+  private  String bday;
+  private  String bmonth;
+  private  String byear;
+  private  String group;
+  private  String address2;
+  private  String phone2;
+  private  String notes;
 
-  public ContactData(
-          String firstname,
-          String middlename,
-          String lastname,
-          String nickname,
-          String photo,
-          String title,
-          String company,
-          String address,
-          String tel_home,
-          String tel_mobile,
-          String tel_work,
-          String fax,
-          String email,
-          String homepage,
-          String bday,
-          String bmonth,
-          String byear,
-          String group,
-          String address2,
-          String phone2,
-          String notes) {
-      this.id = Integer.MAX_VALUE;
-      this.firstname = firstname;
-      this.middlename = middlename;
-      this.lastname = lastname;
-      this.nickname = nickname;
-      this.photo = photo;
-      this.title = title;
-      this.company = company;
-      this.address = address;
-      this.tel_home = tel_home;
-      this.tel_mobile = tel_mobile;
-      this.tel_work = tel_work;
-      this.fax = fax;
-      this.email = email;
-      this.homepage = homepage;
-      this.bday = bday;
-      this.bmonth = bmonth;
-      this.byear = byear;
-      this.group = group;
-      this.address2 = address2;
-      this.phone2 = phone2;
-      this.notes = notes;
-    }
 
-  public ContactData(
-          int id,
-          String firstname,
-          String middlename,
-          String lastname,
-          String nickname,
-          String photo,
-          String title,
-          String company,
-          String address,
-          String tel_home,
-          String tel_mobile,
-          String tel_work,
-          String fax,
-          String email,
-          String homepage,
-          String bday,
-          String bmonth,
-          String byear,
-          String group,
-          String address2,
-          String phone2,
-          String notes) {
-
+  public ContactData withId(int id) {
     this.id = id;
-    this.firstname = firstname;
-    this.middlename = middlename;
-    this.lastname = lastname;
-    this.nickname = nickname;
-    this.photo = photo;
-    this.title = title;
-    this.company = company;
-    this.address = address;
-    this.tel_home = tel_home;
-    this.tel_mobile = tel_mobile;
-    this.tel_work = tel_work;
-    this.fax = fax;
-    this.email = email;
-    this.homepage = homepage;
-    this.bday = bday;
-    this.bmonth = bmonth;
-    this.byear = byear;
-    this.group = group;
-    this.address2 = address2;
-    this.phone2 = phone2;
-    this.notes = notes;
+    return this;
   }
 
-  public void setId(int id) {
-    this.id = id;
+  public ContactData withFirstname(String firstname) {
+    this.firstname = firstname;
+    return this;
+  }
+
+  public ContactData withMiddlename(String middlename) {
+    this.middlename = middlename;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
+    this.lastname = lastname;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withPhoto(String photo) {
+    this.photo = photo;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withTel_home(String tel_home) {
+    this.tel_home = tel_home;
+    return this;
+  }
+
+  public ContactData withTel_mobile(String tel_mobile) {
+    this.tel_mobile = tel_mobile;
+    return this;
+  }
+
+  public ContactData withTel_work(String tel_work) {
+    this.tel_work = tel_work;
+    return this;
+  }
+
+  public ContactData withFax(String fax) {
+    this.fax = fax;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withHomepage(String homepage) {
+    this.homepage = homepage;
+    return this;
+  }
+
+  public ContactData withBday(String bday) {
+    this.bday = bday;
+    return this;
+  }
+
+  public ContactData withBmonth(String bmonth) {
+    this.bmonth = bmonth;
+    return this;
+  }
+
+  public ContactData withByear(String byear) {
+    this.byear = byear;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withAddress2(String address2) {
+    this.address2 = address2;
+    return this;
+  }
+
+  public ContactData withPhone2(String phone2) {
+    this.phone2 = phone2;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
   }
 
   public int getId() {
