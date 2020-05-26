@@ -4,11 +4,14 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
+// Начало
 /*
   @Test
   public void testGroupCreation() throws Exception {
@@ -18,10 +21,10 @@ public class GroupCreationTests extends TestBase {
 */
 
 // КОЛЛЕКЦИИ
-
+/*
 // при добавлении новой группы, они должны увеличиваться на 1
 // нужен метод getGroupCount(), который позволяет узнать кол-во групп
-/*
+
   @Test
     public void testGroupCreation() throws Exception {
       app.getNavigationHelper().gotoGroupPage();
@@ -33,9 +36,7 @@ public class GroupCreationTests extends TestBase {
     }
 */
 
-
 // ПОЛУЧЕНИЕ СПИСКА ЭЛЕМЕНТОВ С WEB-СТРАНИЦЫ
-
 /*
 @Test
     public void testGroupCreation() throws Exception {
@@ -55,7 +56,10 @@ public class GroupCreationTests extends TestBase {
       // after.size() - размер списка ПОСЛЕ добавления = размеру before.size() - ДО, +1
     }
 
-*//*---------------------RESULT--------------------------------------------
+*/
+
+//RESULT
+/*---------------------RESULT--------------------------------------------
 
   @Test
   public void testGroupCreation() throws Exception {
@@ -69,8 +73,8 @@ public class GroupCreationTests extends TestBase {
 
 -------------------------------------------------------------------------*/
 
-/* ПОИСК MAX ЭЛЕМЕНТА В КОЛЛЕКЦИИ
-
+// ПОИСК MAX ЭЛЕМЕНТА В КОЛЛЕКЦИИ
+/*
   @Test
   public void testGroupCreation() throws Exception {
     app.getNavigationHelper().gotoGroupPage();
@@ -108,6 +112,8 @@ public class GroupCreationTests extends TestBase {
 // преобразование списка в множества
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 */
+
+//RESULT
 /*---------------------RESULT--------------------------------------------
 
   @Test
@@ -135,6 +141,8 @@ public class GroupCreationTests extends TestBase {
   }
 
 ---------------------------------------------------------------------*/
+
+//ПОЛУЧЕНИЕ MAX ID (Лямбда-выражения)
 /*
   @Test
   public void testGroupCreation() throws Exception {
@@ -220,7 +228,10 @@ public class GroupCreationTests extends TestBase {
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
   }
 
-*//*---------------------RESULT--------------------------------------------*/
+*/
+
+//RESULT
+/*---------------------RESULT--------------------------------------------
 
      @Test
 
@@ -232,7 +243,6 @@ public class GroupCreationTests extends TestBase {
     GroupData group = new GroupData().withName("test5");
     app.group().create(group);
     List<GroupData> after = app.group().list();
-
     Assert.assertEquals(after.size(), before.size() + 1);
 
     group.withId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
@@ -240,6 +250,40 @@ public class GroupCreationTests extends TestBase {
     before.add(group);
     Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
 }
+-------------------------------------------------------------------------*/
+
+
+    @Test
+
+    public void testGroupCreation() throws Exception {
+
+        app.goTo().groupPage();
+        Set<GroupData> before = app.group().all();
+        //GroupData group = new GroupData("test0", "test_test", "test_test_test");
+        GroupData group = new GroupData().withName("test7");
+        app.group().create(group);
+        Set<GroupData> after = app.group().all();
+        Assert.assertEquals(after.size(), before.size() + 1);
+
+// Как использовать анонимную функцию
+/* нужно новой добавленной группе присвоить правильный id
+*  withId ()- тут вычисляется max id
+*  after - кол-цию с известными id - превращаем в поток stream() - в поток id-ров, т.е. чисел, с помощью фун-ии mapToInt ()
+*  фун-ия mapToInt () - в качестве параметра, принимает описание того, как объект преобразуется в число
+*  т.е. в качестве параметра mapToInt() - надо передать анонимную функцию, котор будет последовательно применяться ко всем элементам потока,
+*  и каждый из них, последовательно будет преобразовываться в число
+*  в результате, из потока объектов типа GroupData - получаем поток целых чисел
+*---------------------------------------------------------
+*  анонимная функция  mapToInt((g) -> g.getId())
+*  в качестве параметра - g (группа), а в качестве результата - g.getId() (id этой группы), т.е. преобразует объект в число, получили поток целых чисел
+*  отбираем максимальное - max()
+*  и преобразуем его в целое число getAsInt()
+*  получили max id среди всех групп
+*/
+        group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()); // объект в идентификатор
+        before.add(group);
+        Assert.assertEquals(before, after);
+    }
 
 }
 

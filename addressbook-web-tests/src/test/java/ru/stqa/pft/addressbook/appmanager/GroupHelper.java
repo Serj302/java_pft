@@ -6,7 +6,9 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupHelper extends BaseHelper{
 
@@ -31,23 +33,28 @@ public class GroupHelper extends BaseHelper{
   public void initGroupCreation() {
     click(By.name("new"));
   }
+
+//selectGroup()
 /*
   public void selectGroup() {
     click(By.name("selected[]"));
   }
 */
 
+// Модификация, для конкретного выбора группы - selectGroup(int index)
+/*
 // Модификация, для конкретного выбора группы
-
   public void selectGroup(int index) {        // в качестве параметра - ИНДЕКС ЭЛЕМЕНТА
 //wd.findElements(By.name("selected[]"));    // поиск всех элементов по ЛОКАТОРУ selected[]
 //.get(index)                                // среди этих элементов, ОТБОР ПО ИНДЕКСУ
 //click                                      //именно по вбранному элементы - выполнить КЛИК
-
     wd.findElements(By.name("selected[]")).get(index).click();
-
   }
+*/
 
+  public void selectGroupById(int id) {
+    wd.findElement(By.cssSelector("input[value='" + id + "']")).click();
+  }
 
   public void deleteSelectedGroups() {
     click(By.name("delete"));
@@ -68,6 +75,8 @@ public class GroupHelper extends BaseHelper{
     returnToGroupPage();
   }
 
+// Метод модификации групп modify(int index)
+/*
  // Метод модификации групп (Актуализация кода), принимает 2 параметра: 1. индекс группы для модификации, 2. Обект с новыми данными
   public void modify(int index, GroupData group) {
     selectGroup(index);
@@ -76,19 +85,39 @@ public class GroupHelper extends BaseHelper{
     submitGroupModification();
     returnToGroupPage();
   }
+*/
 
+  public void modify(GroupData group) {
+    selectGroupById(group.getId());
+    initGroupModification();
+    fillGroupForm(group);
+    submitGroupModification();
+    returnToGroupPage();
+  }
+
+// delete(int index)
+/*
   public void delete(int index) {
     selectGroup(index);
     deleteSelectedGroups();
     returnToGroupPage();
   }
+*/
 
-// проверка наличия элемента, того самого, которого пытаемся выбирать в selectGroup
+
+  public void delete(GroupData group) {
+    selectGroupById(group.getId());
+    deleteSelectedGroups();
+    returnToGroupPage();
+  }
+
+// проверка наличия элемента, того самого, которого пытаемся выбирать в selectGroup - isThereAGroup
   public boolean isThereAGroup() {
     return isElementPresent(By.name("selected[]"));
   }
 
-
+// метод позволяет узнать кол-во групп
+/*
 // контроль кол-ва элементов
 // метод позволяет узнать кол-во групп
   public int getGroupCount() {
@@ -99,9 +128,10 @@ public class GroupHelper extends BaseHelper{
 // подождет, не появятся ли элементы и только по истечению 60 сек - он вернет пустой список, состоящий из 0 элементов
 
   }
+*/
 
+// Метод для получения списка элементов/групп с web-страницы - getGroupList
 /*
-// Метод для получения списка элементов/групп с web-страницы
 // Сравнения размера спсисков
   public List<GroupData> getGroupList() {
 
@@ -128,7 +158,8 @@ public class GroupHelper extends BaseHelper{
   }
  */
 
-// Метод для получения списка элементов с web-страницы
+// Метод для получения списка элементов с web-страницы - list
+/*
   public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
@@ -140,7 +171,19 @@ public class GroupHelper extends BaseHelper{
     }
     return groups;
   }
+*/
 
+// Метод для получения множества элементов с web-страницы - all
+  public Set<GroupData> all() {
+    Set<GroupData> groups = new HashSet<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements){
+      String name = element.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value")); // поиск елемента, внутри другого элемента
+      groups.add(new GroupData().withId(id).withName(name));
+    }
+    return groups;
+  }
 
 }
 

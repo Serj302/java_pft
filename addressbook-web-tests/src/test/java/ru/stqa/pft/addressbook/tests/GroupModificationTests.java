@@ -7,10 +7,12 @@ import ru.stqa.pft.addressbook.model.GroupData;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
-public class GroupModificationTests extends TestBase{
+//Начало
+/*public class GroupModificationTests extends TestBase{
 
-/*
+
   @Test
   public void testGroupModification() {
     app.getNavigationHelper().gotoGroupPage();
@@ -74,7 +76,10 @@ public class GroupModificationTests extends TestBase{
 
   }
 
-*//* ---------------------------RESULT--------------------------------------
+*/
+
+//  RESULT
+/* ---------------------------RESULT--------------------------------------
 
   @Test
   public void testGroupModification() {
@@ -100,14 +105,14 @@ public class GroupModificationTests extends TestBase{
 
   }
 
-/* ---------------------------RESULT--------------------------------------*/
+---------------------------RESULT--------------------------------------*/
 
-/* СОРТИРОВКА СПИСКА */
-
-// выше мы игнорировали учета порядка групп и сравнивали множества
+// СОРТИРОВКА СПИСКА ПО ОБЪЕКТАМ
+/*
+// выше мы игнорировали учет порядка групп и сравнивали множества
 // теперь наводим порядок
 // УПОРЯДОЧИВАЕМ ГРУППЫ
-/*
+
   @Test
   public void testGroupModification() {
 
@@ -139,27 +144,25 @@ public class GroupModificationTests extends TestBase{
 */
 
 // Актуализация кода
-
+/*
 // Перед каждым тестом - проверка предусловия (Актуализация кода)
   @BeforeMethod
   public void ensurePreconditions(){
     app.goTo().groupPage();
-    if (app.group().list().size() == 0) {  /*if (! app.group().isThereAGroup()) {  - isThereAGroup() - заменили на альтернаивн проверку */
+    if (app.group().list().size() == 0) {  //if (! app.group().isThereAGroup()) {  - isThereAGroup() - заменили на альтернаивн проверку
       app.group().create(new GroupData().withName("test2"));
     }
   }
 
+
   @Test
   public void testGroupModification() {
 
-    /* предусловие перенести в @BeforeMethod
-
-    app.getNavigationHelper().gotoGroupPage();
-    if (! app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().createGroup (new GroupData("test0", null, null));
-    }
-
-     */
+//   предусловие перенести в @BeforeMethod
+//    app.getNavigationHelper().gotoGroupPage();
+//    if (! app.getGroupHelper().isThereAGroup()) {
+//      app.getGroupHelper().createGroup (new GroupData("test0", null, null));
+//    }
 
     List<GroupData> before = app.group().list();
     int index = 2;
@@ -177,7 +180,36 @@ public class GroupModificationTests extends TestBase{
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before, after);
+  }
+*/
 
+
+/* СОРТИРОВКА СПИСКА ПО МНОЖЕСТВАМ (несортированный набор элементов) */
+public class GroupModificationTests extends TestBase{
+
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().groupPage();
+    if (app.group().all().size() == 0) {
+      app.group().create(new GroupData().withName("test2"));
+    }
+  }
+
+
+  @Test
+  public void testGroupModification() {
+
+  Set<GroupData> before = app.group().all();
+    GroupData modifiedGroup = before.iterator().next();   // извлечь элемент из множества, любой
+    GroupData group = new GroupData()
+            .withId(modifiedGroup.getId()).withName("test3").withHeader("test33").withFooter("test44");
+    app.group().modify(group);
+    Set<GroupData> after = app.group().all();
+    Assert.assertEquals(after.size(), before.size());
+
+    before.remove(modifiedGroup);
+    before.add(group);
+    Assert.assertEquals(before, after);
   }
 
 }

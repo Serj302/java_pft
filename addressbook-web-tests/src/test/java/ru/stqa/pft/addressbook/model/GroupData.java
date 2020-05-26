@@ -54,13 +54,31 @@ public class GroupData {
             '}';
   }
 
-// Необходим, чтобы указать Java, как сравнивать объекты типа GroupData
+// Необходимо указать Java, как сравнивать объекты по name, типа GroupData
+/*
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     GroupData groupData = (GroupData) o;
     return Objects.equals(id, groupData.id) &&
+            Objects.equals(name, groupData.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name);
+  }
+
+ */
+
+// Сравнения множеств. Для этого должен участвовать и id. Чтобы потом выявить max id
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    GroupData groupData = (GroupData) o;
+    return id == groupData.id &&
             Objects.equals(name, groupData.name);
   }
 
